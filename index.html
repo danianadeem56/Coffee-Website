@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Caffeine Craze</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      min-height: 100vh;
+      width: 100%;
+      background: url(background.webp);
+      background-position: center;
+      background-size: cover;
+      position: relative;
+      padding-top: 70px;
+      /* added for fixed navbar space */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .navbar {
+      background-color: #481E14;
+      padding: 2px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .nav-link {
+      margin: 15px;
+    }
+
+    .nav-link:hover {
+      color: black;
+    }
+
+    .content {
+      width: 100%;
+      color: white;
+      text-align: center;
+      font-size: larger;
+      font-weight: bolder;
+      font-family: Verdana;
+      padding: 5%;
+
+    }
+
+    .cart-block {
+      cursor: pointer;
+    }
+
+    .cart-block #cart-count {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: black;
+      color: white;
+      font-size: 10px;
+      font-weight: bold;
+      width: 16px;
+      height: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 10px;
+    }
+
+    .footer {
+      background-color: #481E14;
+      color: white;
+      padding: 2px;
+    }
+
+    .footer .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .footer h2 {
+      width: 100%;
+      margin-bottom: 10px;
+      padding-top: 1%;
+      padding-left: 5%;
+      font-size: 22px;
+      font-weight: bold;
+      font-family: Verdana;
+    }
+
+    .footer-links ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      padding: 0;
+      margin: 0;
+      font-family: Verdana;
+    }
+
+    .footer-links ul li a {
+      text-decoration: none;
+      color: white;
+      font-size: 18px;
+    }
+
+    .footer .para p {
+      margin: 0;
+      font-size: 18px;
+      font-family: Verdana;
+    }
+
+    .navbar-collapse {
+      background-color: #481E14;
+    }
+
+    @media (max-width: 992px) {
+      .navbar {
+        position: static;
+      }
+
+      header {
+        padding-top: 0;
+        display: block;
+      }
+
+      .content {
+        margin-top: 40%;
+      }
+
+      .navbar-brand {
+        font-size: 1.8rem !important;
+      }
+
+      .nav-link {
+        margin: 10px;
+        font-size: 1rem !important;
+      }
+
+      .footer .container {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .footer-links ul {
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+
+      .footer h2 {
+        padding-left: 0;
+        text-align: center;
+      }
+
+      .navbar-collapse {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+      }
+
+      .cart-item .nav-link {
+        padding: 6px 10px !important;
+        font-size: 0.9rem !important;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: auto;
+        border: 1px solid white;
+        border-radius: 5px;
+        gap: 5px;
+      }
+
+      .cart-block i {
+        font-size: 1rem;
+      }
+
+      .cart-block span {
+        font-size: 0.9rem;
+      }
+
+      .cart-item {
+        margin-left: 0 !important;
+        margin-top: 10px;
+        width: fit-content;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .navbar-brand {
+        font-size: 1.5rem !important;
+      }
+
+      .nav-link {
+        margin: 8px;
+        font-size: 0.9rem !important;
+      }
+
+      .cart-block #cart-count {
+        width: 14px;
+        height: 14px;
+        font-size: 8px;
+        top: -6px;
+        right: -6px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .content h1 {
+        font-size: 1.8rem;
+      }
+
+      .content p {
+        font-size: 1rem;
+      }
+
+      .navbar-brand {
+        font-size: 1.2rem !important;
+      }
+
+      .nav-link {
+        margin: 5px;
+        font-size: 0.8rem !important;
+      }
+
+      .footer h2 {
+        font-size: 18px;
+      }
+
+      .footer-links ul li a {
+        font-size: 16px;
+      }
+
+      .footer .para p {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container ms-5">
+        <img class="img-fluid rounded" src="coffee logo.jpg" height="40px" width="40px" />
+        <a class="navbar-brand fw-bold fs-1 ms-2 text-white" href="#">Caffeine Craze</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link fs-5 text-white" href="index.html">HOME</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fs-5 text-white" href="menu.html">MENU</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fs-5 text-white" href="about.html">ABOUT US</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fs-5 text-white" href="contact.html">CONTACT US</a>
+            </li>
+            <li class="nav-item cart-item ms-5">
+              <a class="nav-link cart-block position-relative d-flex align-items-center justify-content-center px-3 py-2 border border-white rounded text-white fw-bold"
+                href="cart.html">
+                <span id="cart-count">0</span>
+                <i class="fas fa-shopping-cart ms-2"></i>
+                <span class="ms-2">Cart</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="content bg-dark bg-opacity-50 ">
+      <h1 class="display-4 fw-bold">Welcome to Caffeine Craze</h1>
+      <p class="lead fs-4">Start your day with a Fresh Coffee</p>
+    </div>
+  </header>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <h2>Caffeine Craze</h2>
+      <div class="footer-links">
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+          <li><a href="policy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div class="para">
+        <p>&copy; 2025 Caffeine Craze. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="app.js"></script>
+
+</body>
+
+</html>
